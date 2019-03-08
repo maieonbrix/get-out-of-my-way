@@ -1,5 +1,13 @@
+/**
+ * **TODO**
+ * - créer une interface graphique
+ *  - créer un bouton pour activer la destruction on click ou bien la désactiver (toggle)
+ *  - créer un bouton undo
+ * - créer une option de presets
+ */
+
 function saveWidth(node) {
-  let rect = node.getBoudingClientRect();
+  let rect = node.getBoundingClientRect();
   node.__GOFMYPreviousWidth = rect.width;
   node.__GOFMYPreviousHeight = rect.height;
 }
@@ -54,3 +62,9 @@ function getOutOfMyWayQueueThing() {
 }
 
 let history = getOutOfMyWayQueueThing();
+
+document.addEventListener("click", function(event) {
+  let action = { type: "removed", node: event.target };
+
+  history.dispatch(action);
+});

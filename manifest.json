@@ -1,6 +1,19 @@
 {
   "name": "Get Out Of My Way",
   "version": "0.1",
-  "description": "Build an Extension!",
-  "manifest_version": 2
+  "description": "Destroy anything on the page by clicking on it",
+  "manifest_version": 2,
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": [
+        //match patterns when the content script will be used
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": ["GOFMW.js"],
+      //specifies when the script should run
+      "run_at": "document_end"
+    }
+  ]
 }
