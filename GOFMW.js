@@ -29,9 +29,11 @@ function getOutOfMyWayQueueThing() {
           hideNode(action);
           queue.push(action);
           break;
-        case "undo":
-          showNode(action);
-          queue.pop();
+        case "undo": {
+          let { node: lastHiddenNode } = queue.pop();
+          showNode(lastHiddenNode);
+          break;
+        }
         default:
           break;
       }
