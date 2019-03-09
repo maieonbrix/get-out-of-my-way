@@ -6,28 +6,23 @@
  * - créer une option de presets
  */
 
-function saveWidth(node) {
-  let rect = node.getBoundingClientRect();
-  node.__GOFMYPreviousWidth = rect.width;
-  node.__GOFMYPreviousHeight = rect.height;
+function saveOriginalComputedStyles(node) {
+  let styles = window.getComputedStyle(node);
+  node.__GOFMWStyles = styles;
 }
 function hideNode(action) {
   let { node } = action;
-  saveWidth(node);
+  saveOriginalComputedStyles(node);
   node.style.opacity = 0;
   node.style.width = 0;
   node.style.height = 0;
   node.style.pointerEvents = "none";
   node.style.visibility = "hidden";
 }
-function showNode(action) {
-  let { node } = action;
-  node.style.opacity = 1;
-  node.style.width = node.__GOFMYPreviousWidth;
-  node.style.height = node.__GOFMYPreviousHeight;
-  node.style.pointerEvents = "all";
-  node.style.visibility = undefined; // fallback default
+function showNode(node) {
+  node.style = node.__GOFMWStyles;
 }
+
 function getOutOfMyWayQueueThing() {
   const queue = [];
   return {
