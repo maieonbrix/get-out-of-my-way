@@ -10,6 +10,7 @@ function saveOriginalComputedStyles(node) {
   let styles = window.getComputedStyle(node);
   node.__GOFMWStyles = styles;
 }
+
 function hideNode(action) {
   let { node } = action;
   saveOriginalComputedStyles(node);
@@ -44,6 +45,9 @@ function getOutOfMyWayQueueThing() {
     pop() {
       return queue.pop();
     },
+    getQueue() {
+      return queue;
+    },
     peek() {
       return queue[queue.length - 1];
     },
@@ -56,10 +60,14 @@ function getOutOfMyWayQueueThing() {
   };
 }
 
-let history = getOutOfMyWayQueueThing();
+window.__GOFMW = window.__GOFMW || getOutOfMyWayQueueThing();
 
-document.addEventListener("click", function(event) {
+function handleClickToHideNode(event) {
   let action = { type: "removed", node: event.target };
 
-  history.dispatch(action);
-});
+  window.__GOFMW.dispatch(action);
+
+  document.removeEventListener("click", handleClickToHideNode);
+}
+
+document.addEventListener("click", handleClickToHideNode);

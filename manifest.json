@@ -3,17 +3,12 @@
   "version": "0.1",
   "description": "Destroy anything on the page by clicking on it",
   "manifest_version": 2,
-  "permissions": ["activeTab"],
-  "content_scripts": [
-    {
-      "matches": [
-        //match patterns when the content script will be used
-        "http://*/*",
-        "https://*/*"
-      ],
-      "js": ["GOFMW.js"],
-      //specifies when the script should run
-      "run_at": "document_end"
-    }
-  ]
+  "permissions": ["activeTab", "storage", "tabs"],
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["GOFMW.js"],
+    "persistent": false
+  }
 }
