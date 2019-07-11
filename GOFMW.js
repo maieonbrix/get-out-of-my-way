@@ -1,9 +1,8 @@
 /**
  * **TODO**
  * - créer une interface graphique
- *  - créer un bouton pour activer la destruction on click ou bien la désactiver (toggle)
- *  - créer un bouton undo
- * - créer une option de presets
+ *  - créer un bouton pour activer la destruction on click ou bien la désactiver (toggle) (à la color picker)
+ * - créer une option de listener pour des pages spécifiques (par exemple, pour toutes les fois où un utilisateur visite un même site A alors supprimer le même élément que l'utilisateur supprime à chaque fois)
  */
 
 function saveOriginalComputedStyles(node) {
